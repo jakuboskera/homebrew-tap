@@ -5,20 +5,20 @@
 class TkgiKubectx < Formula
   desc "Faster way to switch between clusters and namespaces in kubectl with support of tkgi login before switch"
   homepage "https://github.com/jakuboskera/tkgi-kubectx"
-  version "0.1.1"
+  version "0.2.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/jakuboskera/tkgi-kubectx/releases/download/v0.1.1/tkgi-kubectx_v0.1.1_darwin_x86_64.tar.gz"
-      sha256 "613e3e760c91ca3f6d3c9d2b39606e8180e10205492351ab56e5509b99467a07"
+      url "https://github.com/jakuboskera/tkgi-kubectx/releases/download/v0.2.0/tkgi-kubectx_v0.2.0_darwin_x86_64.tar.gz"
+      sha256 "71e0a263b0c955ab4e64e1735cfcb26c086204e710904f46745eeecdefaed32d"
 
       def install
         bin.install "tkgi-kubectx"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/jakuboskera/tkgi-kubectx/releases/download/v0.1.1/tkgi-kubectx_v0.1.1_darwin_arm64.tar.gz"
-      sha256 "7f65b62ef9b904f3a6ef836514b5dc5efab52a25dae47956468d4cb712cf2073"
+      url "https://github.com/jakuboskera/tkgi-kubectx/releases/download/v0.2.0/tkgi-kubectx_v0.2.0_darwin_arm64.tar.gz"
+      sha256 "26f5a2e4c279fb0601f238b2b16a175a59fcd34c02466beab49458df99f523ce"
 
       def install
         bin.install "tkgi-kubectx"
@@ -27,17 +27,25 @@ class TkgiKubectx < Formula
   end
 
   on_linux do
-    if Hardware::CPU.intel?
-      url "https://github.com/jakuboskera/tkgi-kubectx/releases/download/v0.1.1/tkgi-kubectx_v0.1.1_linux_x86_64.tar.gz"
-      sha256 "8e010b363c3a5ec9c91b09e1ab0a6c3f039efa92f60d6599e1ed6ac8f62ce3bd"
+    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
+      url "https://github.com/jakuboskera/tkgi-kubectx/releases/download/v0.2.0/tkgi-kubectx_v0.2.0_linux_arm64.tar.gz"
+      sha256 "5be120a0aaa91970599e36e5da9b2fba5f123b6f4c83105159a66800b6f8c2f4"
 
       def install
         bin.install "tkgi-kubectx"
       end
     end
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/jakuboskera/tkgi-kubectx/releases/download/v0.1.1/tkgi-kubectx_v0.1.1_linux_arm64.tar.gz"
-      sha256 "8675e8fd51552d22a01cd8d0d183c3c56d3235600b8e98c1f0f4fdf13b6fe216"
+    if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
+      url "https://github.com/jakuboskera/tkgi-kubectx/releases/download/v0.2.0/tkgi-kubectx_v0.2.0_linux_armhf.tar.gz"
+      sha256 "eac1139a59dc6f1db9b43c4e2e866d08a3e14250e1f03c400245524686c8e055"
+
+      def install
+        bin.install "tkgi-kubectx"
+      end
+    end
+    if Hardware::CPU.intel?
+      url "https://github.com/jakuboskera/tkgi-kubectx/releases/download/v0.2.0/tkgi-kubectx_v0.2.0_linux_x86_64.tar.gz"
+      sha256 "68901776177e81f45b58397f2147d2d8f11ed8ce950096c5866d76652db1bf4a"
 
       def install
         bin.install "tkgi-kubectx"
